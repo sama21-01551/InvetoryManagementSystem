@@ -1,7 +1,9 @@
 
 
 
-using InvetoryManagementSystem.DbContexts;
+using Microsoft.EntityFrameworkCore;
+using InvetoryManagementSystem.Infrastructure.Data;
+
 
 namespace InvetoryManagementSystem
 {
@@ -17,7 +19,8 @@ namespace InvetoryManagementSystem
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddDbContext<InventoryManagementSystemContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -38,7 +41,7 @@ namespace InvetoryManagementSystem
 
 
 
-            Invetory_Management Invetory= new Invetory_Management();
+            InventoryManagementSystemContext Invetory= new InventoryManagementSystemContext();
 
 
 
