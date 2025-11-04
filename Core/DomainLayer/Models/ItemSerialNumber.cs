@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DomainLayer.Models;
+using System;
 using System.Collections.Generic;
 
 namespace InvetoryManagementSystem;
 
-public partial class ItemSerialNumber
+public partial class ItemSerialNumber: BaseEntity<int>
 {
     public int SerialId { get; set; }
 

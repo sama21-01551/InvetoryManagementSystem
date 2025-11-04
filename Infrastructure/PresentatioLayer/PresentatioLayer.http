@@ -1,0 +1,5 @@
+﻿@PresentatioLayer_HostAddress = 
+
+GET {{PresentatioLayer_HostAddress}}/api/ItemMaster?name=string
+
+###

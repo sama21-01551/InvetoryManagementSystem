@@ -13,7 +13,7 @@ public partial class Store
 
     public string? StoreType { get; set; }
 
-    public string? Address { get; set; }
+    public string Address { get; set; }
 
     public int? StoreManager { get; set; }
 

@@ -1,4 +1,4 @@
-﻿using System;
+﻿//using System;
 using System.Collections.Generic;
 using InvetoryManagementSystem.Models;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +27,7 @@ public partial class InventoryManagementSystemContext : DbContext
     public virtual DbSet<ItemMaster> ItemMasters { get; set; }
 
     public virtual DbSet<ItemSerialNumber> ItemSerialNumbers { get; set; }
+   
 
     public virtual DbSet<ReceivingOrder> ReceivingOrders { get; set; }
 

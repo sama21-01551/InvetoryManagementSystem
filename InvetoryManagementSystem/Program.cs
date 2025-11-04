@@ -1,8 +1,13 @@
-
+﻿
 
 
 using Microsoft.EntityFrameworkCore;
 using InvetoryManagementSystem.Infrastructure.Data;
+using DomainLayer.Contracs;
+using Persistence.Reporasitores;
+using ServiceAbstraction;
+using Service;
+using Service.Mapping;
 
 
 namespace InvetoryManagementSystem
@@ -21,8 +26,20 @@ namespace InvetoryManagementSystem
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<InventoryManagementSystemContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IServiceManager,ServiceManager>();
+            builder.Services.AddAutoMapper(x=>x.AddProfile(new ItemProfile()));
+            builder.Services.AddAutoMapper(x => x.AddProfile(new ReceivingOrderProfile()));
+            builder.Services.AddAutoMapper(x => x.AddProfile(new SerialProfile()));
+            builder.Services.AddScoped<IItemMasterReposatory, ItemMasterReposator>();
+            builder.Services.AddScoped<IReceivingOrderReoisatory, RecivingOrderReposatory>();
+            builder.Services.AddScoped<ISerialNumberReposatory, SerialNumberReposatory>();
+
+            builder.Services.AddScoped(typeof(IGenericRepository<,>), typeof(GenaricReporasatories<,>));
+
             var app = builder.Build();
 
+            
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -31,7 +48,7 @@ namespace InvetoryManagementSystem
             }
 
             app.UseHttpsRedirection();
-
+            app.UseStaticFiles();
             app.UseAuthorization();
 
 
@@ -41,10 +58,10 @@ namespace InvetoryManagementSystem
 
 
 
-            InventoryManagementSystemContext Invetory= new InventoryManagementSystemContext();
+          //  InventoryManagementSystemContext Invetory = new InventoryManagementSystemContext();
 
 
-
+            
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DomainLayer.Models;
+using System;
 using System.Collections.Generic;
 
 namespace InvetoryManagementSystem;
 
-public partial class ReceivingOrder
+public partial class ReceivingOrder : BaseEntity<int>
 {
     public int ReceivingOrderId { get; set; }
 
@@ -11,9 +12,9 @@ public partial class ReceivingOrder
 
     public int? PurchaseOrderNumber { get; set; }
 
-    public int? SupplierId { get; set; }
+    public int SupplierId { get; set; }
 
-    public int? StoreId { get; set; }
+    public int StoreId { get; set; }
 
     public DateOnly? ReceivingDate { get; set; }
 
