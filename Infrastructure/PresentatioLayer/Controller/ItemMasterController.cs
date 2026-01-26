@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ServiceAbstraction;
 using Shared.DataTransferObject;
 using System;
@@ -13,11 +14,32 @@ namespace PresentatioLayer.Controller
     [Route ("api/[controller]")]
     public class ItemMasterController (IServiceManager servicemanager)  :ControllerBase
     {
-        //get all
-        [HttpGet]
-        public async Task< ActionResult<IEnumerable<ItemMasterDTO>>> GetAllItems() {
-        
-   var items= await  servicemanager.itemservice.GetAllItems();
+        // get all
+             [HttpGet ("AllItems")]
+        [Authorize]
+             public async Task<ActionResult<IEnumerable<ItemMasterDTO>>> GetAllItems()
+        {
+
+            var items = await servicemanager.itemservice.GetAllItems();
+            return Ok(items);
+        }
+
+        [HttpGet("pagenumber/{pagenumber:int}")]
+        [Authorize(Roles ="SuperAdmin")]
+        public async Task<ActionResult<IEnumerable<ItemMasterDTO>>> GetwithPagination(int pagenumber)
+        {
+
+            var items = await servicemanager.itemservice.GetwithpaginationAsync(pagenumber);
+          //  return Ok(items,currentpage);
+          return Ok(items);
+        }
+
+
+        [HttpGet("Serialized")]
+        public async Task<ActionResult<IEnumerable<ItemMasterDTO>>> GetallserializedAsync()
+        {
+
+            var items = await servicemanager.itemservice.GetallserializedAsync();
             return Ok(items);
         }
 
@@ -48,12 +70,25 @@ namespace PresentatioLayer.Controller
         }
         //add item 
         [HttpPost]
-        public async Task<ActionResult> add_newitem(ItemMasterDTO item)
+        public async Task<ActionResult> AddNewItem(ItemMasterDTO item)
         {
-             await servicemanager.itemservice.AddItem(item);
-            return Ok("Item added successfully");
+           var ItemId =  await servicemanager.itemservice.AddItem(item);
+            await servicemanager.serialservice.AddSerialNumber(new SerialNumberDTO { ItemId= ItemId });
+          
+            //await servicemanager.SavechangesAsync();
+            return Ok(new
+            {
+                message = "Item added successfully",
+                ItemId= ItemId
+            });
         }
+        //add 
+        //public async Task<ActionResult> addd(ItemMasterDTO item) 
+        //{
+        //    var itemid = await servicemanager.itemservice.AddItem(item);
+        //    await
 
+        //}
 
         //update 
 
@@ -64,17 +99,24 @@ namespace PresentatioLayer.Controller
         [HttpDelete("{id}")]
         public async Task<ActionResult> Remove(int id)
         {
+            await servicemanager.itemservice.deletByAsync(id);
+            // await servicemanager.serialservice.Delete(id);
+            //  await servicemanager.itemservice.Delete(id);
+            return Ok(new
+            {
+                message = "item deleted "
+                
 
-             await servicemanager.itemservice.Delete(id);
-            return Ok("Item deleted successfully");
+            });
+
 
         }
 
         [HttpPut("{itemdto}")]
-        public async Task<ActionResult> Update(int itemdto)
+        public async Task<ActionResult> Update(int itemdto ,[FromBody]ItemMasterDTO item)
         {
-            await servicemanager.itemservice.Update(itemdto);
-            return Ok(" updated ");
+            await servicemanager.itemservice.Update(itemdto ,item);
+            return Ok(item);
 
         }
 

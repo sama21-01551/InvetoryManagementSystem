@@ -9,17 +9,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{578D9CB1-5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{267D913F-575E-49B8-9A7D-736340035083}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{96C64D9C-F788-4B9F-A1A2-A6671976664A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{96C64D9C-F788-4B9F-A1A2-A6671976664A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainLayer", "Core\DomainLayer\DomainLayer.csproj", "{61FBF1F7-2467-4C8D-A375-E507EBBB5A98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainLayer", "Core\DomainLayer\DomainLayer.csproj", "{61FBF1F7-2467-4C8D-A375-E507EBBB5A98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Core\Service\Service.csproj", "{11B8EC6B-39E4-44C0-BABF-47B86BBC2114}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Core\Service\Service.csproj", "{11B8EC6B-39E4-44C0-BABF-47B86BBC2114}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceAbstraction", "Core\ServiceAbstraction\ServiceAbstraction.csproj", "{AE82F87E-2BBB-4EFE-9335-B96A77F3142F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceAbstraction", "Core\ServiceAbstraction\ServiceAbstraction.csproj", "{AE82F87E-2BBB-4EFE-9335-B96A77F3142F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentatioLayer", "Infrastructure\PresentatioLayer\PresentatioLayer.csproj", "{88FD67FE-84ED-43F5-BC41-70E05C04CC98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentatioLayer", "Infrastructure\PresentatioLayer\PresentatioLayer.csproj", "{88FD67FE-84ED-43F5-BC41-70E05C04CC98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Infrastructure\Presestance\Persistence.csproj", "{6C4ACC8F-840A-4FD1-8FD1-03F731C3E76A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Infrastructure\Presestance\Persistence.csproj", "{6C4ACC8F-840A-4FD1-8FD1-03F731C3E76A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

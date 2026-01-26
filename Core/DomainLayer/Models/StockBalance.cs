@@ -1,9 +1,10 @@
-﻿using System;
+﻿using DomainLayer.Models;
+using System;
 using System.Collections.Generic;
 
 namespace InvetoryManagementSystem;
 
-public partial class StockBalance
+public partial class StockBalance:BaseEntity<int>
 {
     public int StockBalanceId { get; set; }
 

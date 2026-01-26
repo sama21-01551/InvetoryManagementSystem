@@ -14,6 +14,7 @@ namespace DomainLayer.Contracs
 
         IGenericRepository<Tentity, Tkey> GetRepository<Tentity, Tkey>() where Tentity : BaseEntity<Tkey>;
         IReceivingOrderReoisatory ReceivingOrderReoisatory { get; }
+        IstokBalanceReposatory StokBalance_Reposatory { get; }
         Task<int> SaveChanges();
 
 

@@ -8,7 +8,7 @@ namespace Shared.DataTransferObject
 {
     public class StoreDTO
     {
-        public int StoreId { get; set; }
+      //  public int StoreId { get; set; }
 
         public int StoreCode { get; set; }
 

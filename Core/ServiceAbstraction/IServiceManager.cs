@@ -11,6 +11,8 @@ namespace ServiceAbstraction
         public IItemService  itemservice { get;  }
         public ISerialService serialservice { get; }
         public IRecivingOrderService recivingorderservice { get; }
-
+        public IstokBalanceService Stockbalanceservice { get; }
+        public IIdentityService identityservice { get; }
+        Task SavechangesAsync();
     }
 }

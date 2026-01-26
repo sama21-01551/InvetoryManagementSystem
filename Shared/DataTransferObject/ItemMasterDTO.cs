@@ -8,19 +8,19 @@ namespace Shared.DataTransferObject
 {
     public class ItemMasterDTO
     {
-      //  public int ItemId { get; set; }
+      // public int ItemId { get; set; }
 
         public string ItemName { get; set; } = default!;
         public int ItemCode { get; set; }
         public string? ItemCategory { get; set; }
 
         public string? UnitOfMeasure { get; set; }
-
-
+     // public StoreDTO Store { get; set; }
+       
         public decimal UnitPrice { get; set; }
         public int? MinimumStockLevel { get; set; }
 
         public int? MaximumStockLevel { get; set; }
-        public string IsSerialized { get; set; } = "N";
+        public string? IsSerialized { get; set; } 
     }
 }

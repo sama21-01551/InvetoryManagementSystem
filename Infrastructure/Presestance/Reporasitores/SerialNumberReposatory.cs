@@ -26,6 +26,11 @@ namespace Persistence.Reporasitores
                    .FirstOrDefaultAsync(x => x.SerialNumber == serialNumber);
         }
 
+        public async Task<ItemSerialNumber> RemovebyID(int serialNumber)
+        {
+            return await _dbcontext.ItemSerialNumbers.FirstOrDefaultAsync(x => x.ItemId == serialNumber);
+        }
+
         //public Task<ItemSerialNumber> UpdateGSerialStatus(int serialnumber)
         // {
 

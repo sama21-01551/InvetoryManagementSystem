@@ -4,6 +4,7 @@ using InvetoryManagementSystem.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(InventoryManagementSystemContext))]
-    partial class InventoryManagementSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20260118083717_Besline")]
+    partial class Besline
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -308,7 +311,8 @@ namespace Persistence.Migrations
                     b.Property<string>("Specifications")
                         .HasMaxLength(30)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(30)");
+                        .HasColumnType("varchar(30)")
+                        .HasColumnName("Specifications");
 
                     b.Property<string>("UnitOfMeasure")
                         .HasMaxLength(20)
@@ -354,8 +358,10 @@ namespace Persistence.Migrations
                         .HasColumnName("Purchase_Date");
 
                     b.Property<int>("SerialNumber")
+                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("int")
-                        .HasColumnName("Serial_Number");
+                        .HasColumnName("Serial_Number")
+                        .HasComputedColumnSql(" DEFAULT (NEXT VALUE FOR [increment])");
 
                     b.Property<string>("SerialStatus")
                         .HasMaxLength(15)
@@ -452,11 +458,11 @@ namespace Persistence.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(15)");
 
-                    b.Property<int?>("StoreId")
+                    b.Property<int>("StoreId")
                         .HasColumnType("int")
                         .HasColumnName("Store_Id");
 
-                    b.Property<int?>("SupplierId")
+                    b.Property<int>("SupplierId")
                         .HasColumnType("int")
                         .HasColumnName("Supplier_Id");
 
@@ -628,6 +634,7 @@ namespace Persistence.Migrations
                         .HasColumnName("Store_Id");
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasMaxLength(30)
                         .IsUnicode(false)
                         .HasColumnType("varchar(30)");
@@ -844,11 +851,15 @@ namespace Persistence.Migrations
                     b.HasOne("InvetoryManagementSystem.Store", "Store")
                         .WithMany("ReceivingOrders")
                         .HasForeignKey("StoreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK__Receiving__Store__44FF419A");
 
                     b.HasOne("InvetoryManagementSystem.Supplier", "Supplier")
                         .WithMany("ReceivingOrders")
                         .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
                         .HasConstraintName("FK__Receiving__Suppl__440B1D61");
 
                     b.Navigation("Store");

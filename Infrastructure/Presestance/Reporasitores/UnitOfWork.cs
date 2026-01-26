@@ -21,17 +21,20 @@ namespace Persistence.Reporasitores
         public ISerialNumberReposatory SerialNumberReposatory { get; }
         public IReceivingOrderReoisatory ReceivingOrderReoisatory { get; }
 
-       
+        public IstokBalanceReposatory StokBalance_Reposatory {  get; }
+
         public UnitOfWork(
             InventoryManagementSystemContext DbContext,
             IItemMasterReposatory itemMasterReposatory,
             ISerialNumberReposatory serialNumberReposatory,
-            IReceivingOrderReoisatory receivingOrderReoisatory)
+            IReceivingOrderReoisatory receivingOrderReoisatory,
+            IstokBalanceReposatory stokBalanceReposatory)
         {
             _DbContext = DbContext;
             ItemMasterReposatory = itemMasterReposatory;
             SerialNumberReposatory = serialNumberReposatory;
             ReceivingOrderReoisatory = receivingOrderReoisatory;
+            StokBalance_Reposatory = stokBalanceReposatory;
         }
 
         public IGenericRepository<Tentity, Tkey> GetRepository<Tentity, Tkey>()

@@ -4,13 +4,14 @@ using System.Collections.Generic;
 
 namespace InvetoryManagementSystem;
 
-public partial class ItemSerialNumber: BaseEntity<int>
+public partial class ItemSerialNumber : BaseEntity<int>
 {
     public int SerialId { get; set; }
 
     public int ItemId { get; set; }
-
-    public int SerialNumber { get; set; }
+    
+    public int SerialNumber { get; private set; }
+   
 
     public string? SerialStatus { get; set; }
 
@@ -28,7 +29,8 @@ public partial class ItemSerialNumber: BaseEntity<int>
 
     public virtual ICollection<IssueOrderSerial> IssueOrderSerials { get; set; } = new List<IssueOrderSerial>();
 
-    public virtual ItemMaster Item { get; set; } = null!;
+    public virtual ItemMaster Item { get; set; } = null!; 
 
     public virtual ICollection<ReceivingOrderSerial> ReceivingOrderSerials { get; set; } = new List<ReceivingOrderSerial>();
+    
 }

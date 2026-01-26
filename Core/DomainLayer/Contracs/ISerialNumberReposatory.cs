@@ -11,5 +11,6 @@ namespace DomainLayer.Contracs
     {
         Task<ItemSerialNumber> GetSerialStatus(int serialNumber);
         //  Task<ItemSerialNumber> UpdateGSerialStatus(int serialnumber);
+        Task<ItemSerialNumber> RemovebyID(int serialNumber);
     }
 }

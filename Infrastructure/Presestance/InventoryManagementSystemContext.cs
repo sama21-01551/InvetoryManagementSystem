@@ -1,18 +1,21 @@
 ﻿//using System;
 using System.Collections.Generic;
+using DomainLayer.Models.IdentityModule;
+
+//using DomainLayer.Models.IdentityModule;
 using InvetoryManagementSystem.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace InvetoryManagementSystem.Infrastructure.Data;
 
-public partial class InventoryManagementSystemContext : DbContext
+public partial class InventoryManagementSystemContext :IdentityDbContext<ApplicationUser> //DbContext
 {
     public InventoryManagementSystemContext()
     {
     }
 
-    public InventoryManagementSystemContext(DbContextOptions<InventoryManagementSystemContext> options)
-        : base(options)
+    public InventoryManagementSystemContext(DbContextOptions<InventoryManagementSystemContext> options): base(options)
     {
     }
 
@@ -47,6 +50,7 @@ public partial class InventoryManagementSystemContext : DbContext
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
 //        => optionsBuilder.UseSqlServer("Server=.;Database=Inventory_Management_System;Trusted_Connection=True;TrustServerCertificate=True;");
 
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<InventoryTransactionLog>(entity =>
@@ -99,6 +103,7 @@ public partial class InventoryManagementSystemContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Inventory__To_St__5CD6CB2B");
         });
+  base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<IssueOrder>(entity =>
         {
@@ -259,7 +264,7 @@ public partial class InventoryManagementSystemContext : DbContext
             entity.Property(e => e.ItemId).HasColumnName("Item_Id");
             entity.Property(e => e.Note).HasColumnType("text");
             entity.Property(e => e.PurchaseDate).HasColumnName("Purchase_Date");
-            entity.Property(e => e.SerialNumber).HasColumnName("Serial_Number");
+            entity.Property(e => e.SerialNumber).HasColumnName("Serial_Number").HasComputedColumnSql(" DEFAULT (NEXT VALUE FOR [increment])");
             entity.Property(e => e.SerialStatus)
                 .HasMaxLength(15)
                 .IsUnicode(false)

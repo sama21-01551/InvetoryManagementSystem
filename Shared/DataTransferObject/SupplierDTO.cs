@@ -9,7 +9,7 @@ namespace Shared.DataTransferObject
     public class SupplierDTO
     {
 
-        public int SupplierId { get; set; }
+      //  public int SupplierId { get; set; }
 
         public int SupplierCode { get; set; }
 

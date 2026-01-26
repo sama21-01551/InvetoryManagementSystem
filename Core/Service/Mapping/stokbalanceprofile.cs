@@ -9,17 +9,12 @@ using System.Threading.Tasks;
 
 namespace Service.Mapping
 {
-    public class ItemProfile :Profile
+    public class stokbalanceprofile:Profile
     {
-     public ItemProfile()
+      public stokbalanceprofile()
         {
-            CreateMap<ItemMaster, ItemMasterDTO>().ReverseMap();
-          
-           
-
-
+            CreateMap<StockBalance,StokBalancDTO>().ReverseMap();
         }
-
-
+            
     }
 }
